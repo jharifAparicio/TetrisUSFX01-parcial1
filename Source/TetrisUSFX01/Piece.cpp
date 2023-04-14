@@ -124,13 +124,13 @@ bool APiece::CheckWillCollision(function<FVector(FVector OldLocation)> ChangeBef
 
 		if (b) {
 			for (auto&& Result : OutOverlaps) {
-				UE_LOG(LogTemp, Warning, TEXT("OverLapped with actor %s, component=%s"), *Result.GetActor()->GetName(),
+				UE_LOG(LogTemp, Warning, TEXT("OverLapped with actor %s, component=%s"),
+					   *Result.GetActor()->GetName(),
 					*Result.GetComponent()->GetName());
 			}
 			return true;
 		}
 	}
-
 	return false;
 }
 
