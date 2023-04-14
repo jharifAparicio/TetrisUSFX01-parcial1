@@ -81,8 +81,9 @@ void ABoard::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
     PlayerInputComponent->BindAction("Rotate", IE_Pressed, this, &ABoard::Rotate);
     PlayerInputComponent->BindAction("MoveLeft", IE_Pressed, this, &ABoard::MoveLeft);
     PlayerInputComponent->BindAction("MoveRight", IE_Pressed, this, &ABoard::MoveRight);
+    PlayerInputComponent->BindAction("MoveDown", IE_Pressed, this, &ABoard::MoveDown);
     PlayerInputComponent->BindAction("MoveDownToEnd", IE_Pressed, this, &ABoard::MoveDownToEnd);
-    PlayerInputComponent->BindAction("NewPiece", IE_Pressed, this, &ABoard::NewPiece);
+    //PlayerInputComponent->BindAction("NewPiece", IE_Pressed, this, &ABoard::NewPiece);
     //PlayerInputComponent->BindAction("CheckLine", IE_Pressed, this, &ABoard::CheckLine);
 
 }
@@ -131,6 +132,19 @@ void ABoard::MoveDown()
     }
 }
 
+bool ABoard::CheckGameOver() {
+    return CurrentPiece->CheckWillCollision([](FVector OldVector) {
+        return OldVector;
+    }
+    );
+
+    if (!CurrentPiece) {
+        UE_LOG(LogTemp, Warning, TEXT("NoPieces"));
+        return true;
+    }
+}
+
+
 void ABoard::NewPiece()
 {
     CheckLine();
@@ -147,6 +161,7 @@ void ABoard::NewPiece()
     if (bGameOver)
     {
         UE_LOG(LogTemp, Warning, TEXT("Game Over!!!!!!!!"));
+        GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Magenta , TEXT("Game Over"));
         /*if (GameOverSoundCue)
         {
             UGameplayStatics::PlaySoundAtLocation(GetWorld(), GameOverSoundCue, GetActorLocation(), GetActorRotation());
@@ -178,6 +193,7 @@ void ABoard::CheckLine()
             }
         }
     };
+
 
     int z = 0;
     while (z < 20)
@@ -243,15 +259,4 @@ void ABoard::MoveDownToEnd()
         UE_LOG(LogTemp, Warning, TEXT("Wrong status for MoveDownToEnd"));
         break;
     }
-}
-
-bool ABoard::CheckGameOver()
-{
-    if (!CurrentPiece)
-    {
-        UE_LOG(LogTemp, Warning, TEXT("NoPieces"));
-        return true;
-    }
-
-    return CurrentPiece->CheckWillCollision([](FVector OldVector) { return OldVector; });
 }
