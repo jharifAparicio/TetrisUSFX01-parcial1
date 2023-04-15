@@ -74,7 +74,7 @@ void APiece::SpawnPieces() {
 		{{-10.0, -10.0}, {0.0, -10.0}, {0.0, 0.0}, {10.0, 0.0}},
 		{{-10.0, 0.0}, {0.0, 0.0}, {0.0, 10.0}, {10.0, 0.0}},
 		{{-10.0, 0.0}, {0.0, 0.0}, {0.0, -10.0}, {10.0, -10.0}},
-		{{-20.0, 10.0}, {-10.0, 0.0}, {0.0, 10.0}, {10.0, 0.0}},
+		//{{-20.0, 10.0}, {-10.0, 0.0}, {0.0, 10.0}, {10.0, 0.0}},
 	};
 	const int Index = FMath::RandRange(0, Shapes.size() - 1);
 	UE_LOG(LogTemp, Warning, TEXT("index=%d"), Index);
@@ -146,7 +146,7 @@ void APiece::TestRotate() {
 
 	if (!CheckWillCollision(RotateVector)) {
 		UE_LOG(LogTemp, Warning, TEXT("now can rotate"));
-		FRotator NewRotation = this->GetActorRotation() + FRotator(0.0, 0.0, -90.0);
+		FRotator NewRotation = this->GetActorRotation() + FRotator(0.0, .0, -90.0);
 		this->SetActorRelativeRotation(NewRotation);
 		/*if (RotateSoundCue)
 		{
