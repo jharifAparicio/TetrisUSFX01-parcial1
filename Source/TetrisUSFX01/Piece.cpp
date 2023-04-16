@@ -6,6 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
 #include <vector>
+#include "Sound/SoundCue.h"
 
 // carga los valores inicales de la pieza
 APiece::APiece() {
@@ -50,6 +51,15 @@ APiece::APiece() {
 	Colors.Add(ConstructorStatics.Color_6.Get());
 	Colors.Add(ConstructorStatics.Color_7.Get());
 
+	static ConstructorHelpers::FObjectFinder<USoundCue> RotateSoundCueObject(TEXT("SoundCue'/Game/Sounds/block-rotate_Cue.block-rotate_Cue'"));
+	if (RotateSoundCueObject.Succeeded()) {
+		RotateSoundCue = RotateSoundCueObject.Object;
+	}
+
+	static ConstructorHelpers::FObjectFinder<USoundCue> MoveSoundCueObject(TEXT("SoundCue'/Game/Sounds/slow-hit_Cue.slow-hit_Cue'"));
+	if (MoveSoundCueObject.Succeeded()) {
+		MoveLeftRightSoundCue = MoveSoundCueObject.Object;
+	}
 }
 
 // Called when the game starts or when spawned
@@ -146,12 +156,12 @@ void APiece::TestRotate() {
 
 	if (!CheckWillCollision(RotateVector)) {
 		UE_LOG(LogTemp, Warning, TEXT("now can rotate"));
-		FRotator NewRotation = this->GetActorRotation() + FRotator(0.0, .0, -90.0);
+		FRotator NewRotation = this->GetActorRotation() + FRotator(0.0, 0.0, -90.0);
 		this->SetActorRelativeRotation(NewRotation);
-		/*if (RotateSoundCue)
+		if (RotateSoundCue)
 		{
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), RotateSoundCue, GetActorLocation(), GetActorRotation());
-		}*/
+		}
 	}
 }
 
@@ -166,10 +176,10 @@ void APiece::MoveLeft() {
 		NewLocation.Y -= 10;
 		SetActorLocation(NewLocation);
 
-		/* if (MoveLeftRightSoundCue)
+		if (MoveLeftRightSoundCue)
 		 {
 			 UGameplayStatics::PlaySoundAtLocation(GetWorld(), MoveLeftRightSoundCue, GetActorLocation(), GetActorRotation());
-		 }*/
+		 }
 	}
 }
 
@@ -184,10 +194,10 @@ void APiece::MoveRight() {
 		NewLocation.Y += 10;
 		SetActorLocation(NewLocation);
 
-		/*if (MoveLeftRightSoundCue)
+		if (MoveLeftRightSoundCue)
 		{
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), MoveLeftRightSoundCue, GetActorLocation(), GetActorRotation());
-		}*/
+		}
 	}
 }
 

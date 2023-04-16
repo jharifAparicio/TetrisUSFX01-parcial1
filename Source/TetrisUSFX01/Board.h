@@ -38,6 +38,14 @@ public:
 	void CheckLine();
 	void MoveDownToEnd();
 
+	class USoundCue* LineRemoveSoundCue;
+
+	class USoundCue* MoveToEndSoundCue;
+
+	class USoundCue* GameOverSoundCue;
+
+	class USoundCue* GameStartSoundCue;
+
 private:
 	enum PieceStatus { PS_NOT_INITED, PS_MOVING, PS_GOT_BOTTOM };
 	PieceStatus Status = PS_NOT_INITED;

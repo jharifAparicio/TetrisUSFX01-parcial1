@@ -40,6 +40,11 @@ public:
 	void MoveLeft();
 	void MoveRight();
 	bool MoveDown(bool PlaySound = true);
+
+	class USoundCue* RotateSoundCue;
+
+	class USoundCue* MoveLeftRightSoundCue;
+
 	void Dismiss();
 	bool CheckWillCollision(function<FVector(FVector OldLocation)> ChangeBeforeCheck);
 

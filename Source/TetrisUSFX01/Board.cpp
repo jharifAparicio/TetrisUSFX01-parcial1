@@ -5,12 +5,32 @@
 #include "EngineUtils.h"
 #include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
 // Sets default values
 
 ABoard::ABoard() {
 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	static ConstructorHelpers::FObjectFinder<USoundCue> LineRemove_Sound(TEXT("SoundCue'/Game/Sounds/line-remove_Cue.line-remove_Cue'"));
+	if (LineRemove_Sound.Succeeded()) {
+		LineRemoveSoundCue = LineRemove_Sound.Object;
+	}
+
+	static ConstructorHelpers::FObjectFinder<USoundCue> MoveToEnd_Sound(TEXT("SoundCue'/Game/Sounds/force-hit_Cue.force-hit_Cue'"));
+	if (MoveToEnd_Sound.Succeeded()) {
+		MoveToEndSoundCue = MoveToEnd_Sound.Object;
+	}
+
+	static ConstructorHelpers::FObjectFinder<USoundCue> GameStart_Sound(TEXT("SoundCue'/Game/Sounds/start_Cue.start_Cue'"));
+	if (GameStart_Sound.Succeeded()) {
+		GameStartSoundCue = GameStart_Sound.Object;
+	}
+
+	static ConstructorHelpers::FObjectFinder<USoundCue> GameOver_Sound(TEXT("SoundCue'/Game/Sounds/gameover_Cue.gameover_Cue'"));
+	if (GameOver_Sound.Succeeded()) {
+		GameOverSoundCue = GameOver_Sound.Object;
+	}
 }
 
 // Called when the game starts or when spawned
@@ -137,10 +157,10 @@ void ABoard::NewPiece() {
 	if (bGameOver) {
 		UE_LOG(LogTemp, Warning, TEXT("Game Over!!!!!!!!"));
 		GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Magenta, TEXT("Game Over"));
-		/*if (GameOverSoundCue)
+		if (GameOverSoundCue)
 		{
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), GameOverSoundCue, GetActorLocation(), GetActorRotation());
-		}*/
+		}
 	}
 }
 
@@ -191,10 +211,10 @@ void ABoard::CheckLine() {
 			}
 			MoveDownFromLine(z);
 
-			/*if (LineRemoveSoundCue)
+			if (LineRemoveSoundCue)
 			{
 				UGameplayStatics::PlaySoundAtLocation(GetWorld(), LineRemoveSoundCue, GetActorLocation(), GetActorRotation());
-			}*/
+			}
 		}
 	}
 }
@@ -209,10 +229,10 @@ void ABoard::MoveDownToEnd() {
 	}
 	UE_LOG(LogTemp, Warning, TEXT("se fue al final"));
 
-	/*if (MoveToEndSoundCue)
+	if (MoveToEndSoundCue)
 	{
 		UGameplayStatics::PlaySoundAtLocation(GetWorld(), MoveToEndSoundCue, GetActorLocation(), GetActorRotation());
-	}*/
+	}
 
 	switch (Status) {
 		case PS_MOVING:
