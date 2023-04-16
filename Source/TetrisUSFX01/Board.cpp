@@ -153,7 +153,7 @@ void ABoard::CheckLine() {
 		FCollisionShape CollisionShape;
 		FVector Extent(4.5f, 49.5f, 95.0 + 4.5 - 5.0 * z);
 		CollisionShape.SetBox(Extent);
-		//DrawDebugBox(GetWorld(), Location, Extent, FColor::Purple, false, 1, 0, 1);
+		//DrawDebugBox(GetWorld(), Location, Extent, FColor::Purple, true, 1, 1, 1);
 		FCollisionQueryParams Params;
 		FCollisionResponseParams ResponseParam;
 		if (GetWorld()->OverlapMultiByChannel(OutOverlaps,
