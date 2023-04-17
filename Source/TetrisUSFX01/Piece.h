@@ -39,6 +39,10 @@ public:
 	void TestRotate();
 	void MoveLeft();
 	void MoveRight();
+
+	void MoveLeftRight();
+	void MoveRightleft();
+
 	bool MoveDown(bool PlaySound = true);
 
 	class USoundCue* RotateSoundCue;

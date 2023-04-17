@@ -158,8 +158,7 @@ void APiece::TestRotate() {
 		UE_LOG(LogTemp, Warning, TEXT("now can rotate"));
 		FRotator NewRotation = this->GetActorRotation() + FRotator(0.0, 0.0, -90.0);
 		this->SetActorRelativeRotation(NewRotation);
-		if (RotateSoundCue)
-		{
+		if (RotateSoundCue) {
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), RotateSoundCue, GetActorLocation(), GetActorRotation());
 		}
 	}
@@ -176,10 +175,9 @@ void APiece::MoveLeft() {
 		NewLocation.Y -= 10;
 		SetActorLocation(NewLocation);
 
-		if (MoveLeftRightSoundCue)
-		 {
-			 UGameplayStatics::PlaySoundAtLocation(GetWorld(), MoveLeftRightSoundCue, GetActorLocation(), GetActorRotation());
-		 }
+		if (MoveLeftRightSoundCue) {
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), MoveLeftRightSoundCue, GetActorLocation(), GetActorRotation());
+		}
 	}
 }
 
@@ -194,8 +192,45 @@ void APiece::MoveRight() {
 		NewLocation.Y += 10;
 		SetActorLocation(NewLocation);
 
-		if (MoveLeftRightSoundCue)
-		{
+		if (MoveLeftRightSoundCue) {
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), MoveLeftRightSoundCue, GetActorLocation(), GetActorRotation());
+		}
+	}
+}
+
+void APiece::MoveLeftRight() {
+	auto MoveVectorLeftRight = [](FVector OldVector) {
+		OldVector.Y -= 10.0f;
+		OldVector.Z -= 10.0f;
+		return OldVector;
+	};
+
+	if (!CheckWillCollision(MoveVectorLeftRight)) {
+		FVector NewLocation = GetActorLocation();
+		NewLocation.Y -= 10;
+		NewLocation.Z -= 10;
+		SetActorLocation(NewLocation);
+
+		if (MoveLeftRightSoundCue) {
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), MoveLeftRightSoundCue, GetActorLocation(), GetActorRotation());
+		}
+	}
+}
+
+void APiece::MoveRightleft() {
+	auto MoveVectorLeftRight = [](FVector OldVector) {
+		OldVector.Y += 10.0f;
+		OldVector.Z -= 10.0f;
+		return OldVector;
+	};
+
+	if (!CheckWillCollision(MoveVectorLeftRight)) {
+		FVector NewLocation = GetActorLocation();
+		NewLocation.Y += 10;
+		NewLocation.Z -= 10;
+		SetActorLocation(NewLocation);
+
+		if (MoveLeftRightSoundCue) {
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), MoveLeftRightSoundCue, GetActorLocation(), GetActorRotation());
 		}
 	}
