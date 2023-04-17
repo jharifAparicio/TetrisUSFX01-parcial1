@@ -200,14 +200,14 @@ void APiece::MoveRight() {
 
 void APiece::MoveLeftRight() {
 	auto MoveVectorLeftRight = [](FVector OldVector) {
-		OldVector.Y -= 10.0f;
+		OldVector.Y += 10.0f;
 		OldVector.Z -= 10.0f;
 		return OldVector;
 	};
 
 	if (!CheckWillCollision(MoveVectorLeftRight)) {
 		FVector NewLocation = GetActorLocation();
-		NewLocation.Y -= 10;
+		NewLocation.Y += 10;
 		NewLocation.Z -= 10;
 		SetActorLocation(NewLocation);
 
@@ -219,14 +219,14 @@ void APiece::MoveLeftRight() {
 
 void APiece::MoveRightLeft() {
 	auto MoveVectorLeftRight = [](FVector OldVector) {
-		OldVector.Y += 10.0f;
+		OldVector.Y -= 10.0f;
 		OldVector.Z -= 10.0f;
 		return OldVector;
 	};
 
 	if (!CheckWillCollision(MoveVectorLeftRight)) {
 		FVector NewLocation = GetActorLocation();
-		NewLocation.Y += 10;
+		NewLocation.Y -= 10;
 		NewLocation.Z -= 10;
 		SetActorLocation(NewLocation);
 
