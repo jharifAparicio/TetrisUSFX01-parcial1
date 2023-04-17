@@ -36,9 +36,9 @@ APiece::APiece() {
 			Color_3(TEXT("Material'/Game/Mesh/Material_3.Material_3'")),
 			Color_4(TEXT("Material'/Game/Mesh/Material_4.Material_4'")),
 			Color_5(TEXT("Material'/Game/Mesh/Material_5.Material_5'")),
-			Color_6(TEXT("Material'/Game/Mesh/Material_6.Material_6'")),
+			Color_6(TEXT("Material'/Game/Mesh/Material_6.Material_6'"))
 			//Color_7(TEXT("Material'/Game/Mesh/Material_006.Material_006'")) {
-
+		{
 		}
 	};
 	static FConstructorStatics ConstructorStatics;
