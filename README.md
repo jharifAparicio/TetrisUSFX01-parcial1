@@ -5,8 +5,7 @@
 sis457
 -Ing. Carlos Pacheco Lora
 
-instruccion del parcial
-
+//instruccion del parcial
 23.   Implementar un descenso diagonal
 de izquierda a derecha
 de derecha a izquierda
