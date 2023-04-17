@@ -94,6 +94,11 @@ void ABoard::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) {
 	PlayerInputComponent->BindAction("MoveLR", IE_Pressed, this, &ABoard::MoveLeftAtRight);
 	PlayerInputComponent->BindAction("MoveRL", IE_Pressed, this, &ABoard::MoveRightAtLeft);
 
+	//PlayerInputComponent->BindAction("MoveUp", IE_Pressed, this, &ABoard::MoveAtUp);
+
+	//PlayerInputComponent->BindAction("MoveUpLR", IE_Pressed, this, &ABoard::MoveUpLeftRight);
+	//PlayerInputComponent->BindAction("MoveUpRL", IE_Pressed, this, &ABoard::MoveUpRightLeft);
+
 	PlayerInputComponent->BindAction("MoveDown", IE_Pressed, this, &ABoard::MoveDown);
 	PlayerInputComponent->BindAction("MoveDownToEnd", IE_Pressed, this, &ABoard::MoveDownToEnd);
 	//PlayerInputComponent->BindAction("NewPiece", IE_Pressed, this, &ABoard::NewPiece);
@@ -153,6 +158,33 @@ void ABoard::MoveDown() {
 	}
 }
 
+//void ABoard::MoveUpLeftRight() {
+//	if (CurrentPiece) {
+//		CurrentPiece->MoveUpLeftRight();
+//		if (Status == PS_GOT_BOTTOM) {
+//			MoveDownToEnd();
+//		}
+//	}
+//}
+//
+//void ABoard::MoveUpRightLeft() {
+//	if (CurrentPiece) {
+//		CurrentPiece->MoveUpRightLeft();
+//		if (Status == PS_GOT_BOTTOM) {
+//			MoveDownToEnd();
+//		}
+//	}
+//}
+
+//void ABoard::MoveAtUp() {
+//	if (CurrentPiece) {
+//		CurrentPiece->MoveUp();
+//		if (Status == PS_GOT_BOTTOM) {
+//			MoveDownToEnd();
+//		}
+//	}
+//}
+
 bool ABoard::CheckGameOver() {
 	return CurrentPiece->CheckWillCollision([](FVector OldVector) {
 		return OldVector;
@@ -164,7 +196,6 @@ bool ABoard::CheckGameOver() {
 		return true;
 	}
 }
-
 
 void ABoard::NewPiece() {
 	CheckLine();

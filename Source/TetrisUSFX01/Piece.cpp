@@ -84,12 +84,12 @@ void APiece::SpawnPieces() {
 		{{-10.0, -10.0}, {0.0, -10.0}, {0.0, 0.0}, {10.0, 0.0}},
 		{{-10.0, 0.0}, {0.0, 0.0}, {0.0, 10.0}, {10.0, 0.0}},
 		{{-10.0, 0.0}, {0.0, 0.0}, {0.0, -10.0}, {10.0, -10.0}},
-		//{{-20.0, 10.0}, {-10.0, 0.0}, {0.0, 10.0}, {10.0, 0.0}},
+		{{-20.0, 10.0}, {-10.0, 0.0}, {0.0, 10.0}, {10.0, 0.0}},
 	};
 	const int Index = FMath::RandRange(0, Shapes.size() - 1);
 	UE_LOG(LogTemp, Warning, TEXT("index=%d"), Index);
 	const vector<pair<float, float>>& YZs = Shapes[Index];
-	const int ColorIndex = FMath::RandRange(0, Shapes.size() - 1);
+	const int ColorIndex = FMath::RandRange(0, Shapes.size() - 2);
 
 	for (auto&& YZ : YZs) {
 		FRotator Rotation(0.0, 0.0, 0.0);
@@ -235,6 +235,61 @@ void APiece::MoveRightLeft() {
 		}
 	}
 }
+
+//void APiece::MoveUp() {
+//	auto MoveVectorLeftRight = [](FVector OldVector) {
+//		OldVector.Z += 20.0f;
+//		return OldVector;
+//	};
+//
+//	if (!CheckWillCollision(MoveVectorLeftRight)) {
+//		FVector NewLocation = GetActorLocation();
+//		NewLocation.Z += 20;
+//		SetActorLocation(NewLocation);
+//
+//		if (MoveLeftRightSoundCue) {
+//			UGameplayStatics::PlaySoundAtLocation(GetWorld(), MoveLeftRightSoundCue, GetActorLocation(), GetActorRotation());
+//		}
+//	}
+//}
+
+//void APiece::MoveUpLeftRight() {
+//	auto MoveVectorUpLeftRight = [](FVector OldVector) {
+//		OldVector.Y += 10.0f;
+//		OldVector.Z += 10.0f;
+//		return OldVector;
+//	};
+//
+//	if (!CheckWillCollision(MoveVectorUpLeftRight)) {
+//		FVector NewLocation = GetActorLocation();
+//		NewLocation.Y += 10;
+//		NewLocation.Z += 10;
+//		SetActorLocation(NewLocation);
+//
+//		if (MoveLeftRightSoundCue) {
+//			UGameplayStatics::PlaySoundAtLocation(GetWorld(), MoveLeftRightSoundCue, GetActorLocation(), GetActorRotation());
+//		}
+//	}
+//}
+
+//void APiece::MoveUpRightLeft() {
+//	auto MoveVectorUpLeftRight = [](FVector OldVector) {
+//		OldVector.Y -= 10.0f;
+//		OldVector.Z += 10.0f;
+//		return OldVector;
+//	};
+//
+//	if (!CheckWillCollision(MoveVectorUpLeftRight)) {
+//		FVector NewLocation = GetActorLocation();
+//		NewLocation.Y -= 10.0f;
+//		NewLocation.Z += 10.0f;
+//		SetActorLocation(NewLocation);
+//
+//		if (MoveLeftRightSoundCue) {
+//			UGameplayStatics::PlaySoundAtLocation(GetWorld(), MoveLeftRightSoundCue, GetActorLocation(), GetActorRotation());
+//		}
+//	}
+//}
 
 bool APiece::MoveDown(bool PlaySound) {
 	auto MoveVectorDown = [](FVector OldVector) {

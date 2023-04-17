@@ -38,6 +38,11 @@ public:
 	void MoveLeftAtRight();
 	void MoveRightAtLeft();
 
+	//void MoveAtUp();
+	
+	//void MoveUpLeftRight();
+	//void MoveUpRightLeft();
+
 	void NewPiece();
 	void CheckLine();
 	void MoveDownToEnd();
