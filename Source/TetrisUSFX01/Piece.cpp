@@ -89,7 +89,7 @@ void APiece::SpawnPieces() {
 	const int Index = FMath::RandRange(0, Shapes.size() - 1);
 	UE_LOG(LogTemp, Warning, TEXT("index=%d"), Index);
 	const vector<pair<float, float>>& YZs = Shapes[Index];
-	const int ColorIndex = FMath::RandRange(0, 7);
+	const int ColorIndex = FMath::RandRange(0, 6);
 
 	for (auto&& YZ : YZs) {
 		FRotator Rotation(0.0, 0.0, 0.0);
