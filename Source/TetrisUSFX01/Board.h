@@ -33,7 +33,11 @@ public:
 	void Rotate(); 
 	void MoveLeft(); 
 	void MoveRight();
-	void MoveDown(); 
+	void MoveDown();
+
+	void MoveLeftAtRight();
+	void MoveRightAtLeft();
+
 	void NewPiece();
 	void CheckLine();
 	void MoveDownToEnd();

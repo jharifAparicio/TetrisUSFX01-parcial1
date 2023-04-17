@@ -90,6 +90,10 @@ void ABoard::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) {
 	PlayerInputComponent->BindAction("Rotate", IE_Pressed, this, &ABoard::Rotate);
 	PlayerInputComponent->BindAction("MoveLeft", IE_Pressed, this, &ABoard::MoveLeft);
 	PlayerInputComponent->BindAction("MoveRight", IE_Pressed, this, &ABoard::MoveRight);
+
+	PlayerInputComponent->BindAction("MoveLR", IE_Pressed, this, &ABoard::MoveLeftAtRight);
+	PlayerInputComponent->BindAction("MoveRL", IE_Pressed, this, &ABoard::MoveRightAtLeft);
+
 	PlayerInputComponent->BindAction("MoveDown", IE_Pressed, this, &ABoard::MoveDown);
 	PlayerInputComponent->BindAction("MoveDownToEnd", IE_Pressed, this, &ABoard::MoveDownToEnd);
 	//PlayerInputComponent->BindAction("NewPiece", IE_Pressed, this, &ABoard::NewPiece);
@@ -115,6 +119,25 @@ void ABoard::MoveLeft() {
 void ABoard::MoveRight() {
 	if (CurrentPiece) {
 		CurrentPiece->MoveRight();
+		if (Status == PS_GOT_BOTTOM) {
+			MoveDownToEnd();
+		}
+	}
+}
+
+
+void ABoard::MoveLeftAtRight() {
+	if (CurrentPiece) {
+		CurrentPiece->MoveLeftRight();
+		if (Status == PS_GOT_BOTTOM) {
+			MoveDownToEnd();
+		}
+	}
+}
+
+void ABoard::MoveRightAtLeft() {
+	if (CurrentPiece) {
+		CurrentPiece->MoveRightLeft();
 		if (Status == PS_GOT_BOTTOM) {
 			MoveDownToEnd();
 		}
