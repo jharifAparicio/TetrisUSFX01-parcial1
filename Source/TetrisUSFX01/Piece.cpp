@@ -217,7 +217,7 @@ void APiece::MoveLeftRight() {
 	}
 }
 
-void APiece::MoveRightleft() {
+void APiece::MoveRightLeft() {
 	auto MoveVectorLeftRight = [](FVector OldVector) {
 		OldVector.Y += 10.0f;
 		OldVector.Z -= 10.0f;
