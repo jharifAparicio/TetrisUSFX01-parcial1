@@ -17,12 +17,10 @@ ABlock::ABlock()
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> BlockMeshAsset(TEXT("StaticMesh'/Game/Mesh/block.block'"));
 
 	//si la malla o textura existe, la asignamos al objeto
-	if (BlockMeshAsset.Succeeded())
-	{
+	if (BlockMeshAsset.Succeeded()){
 		BlockMesh->SetStaticMesh(BlockMeshAsset.Object);
 		BlockMesh->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
-	}
-	else {
+	} else {
 		UE_LOG(LogTemp, Warning, TEXT("non-existent mesh for the block"));
 	}
 }

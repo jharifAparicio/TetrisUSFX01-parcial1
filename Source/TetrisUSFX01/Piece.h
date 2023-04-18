@@ -34,9 +34,10 @@ public:
 	UPROPERTY()
 		class USceneComponent* SceneComponent;
 
-	//creamos los metos para interactuar con la pieza
+	//creamos los metodos para interactuar con la pieza
 	void DrawDebugPiece();
 	void TestRotate();
+
 	void MoveLeft();
 	void MoveRight();
 
@@ -50,6 +51,7 @@ public:
 
 	bool MoveDown(bool PlaySound = true);
 
+
 	class USoundCue* RotateSoundCue;
 
 	class USoundCue* MoveLeftRightSoundCue;
@@ -58,8 +60,8 @@ public:
 	bool CheckWillCollision(function<FVector(FVector OldLocation)> ChangeBeforeCheck);
 
 	void SpawnPieces();
+	
 	//creamos un array para los colores de los bloques
-	UPROPERTY(EditAnywhere)
 		TArray<class UMaterial*> Colors;
 
 private:
