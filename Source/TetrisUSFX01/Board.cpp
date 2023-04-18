@@ -78,17 +78,15 @@ void ABoard::Tick(float DeltaTime) {
 				NewPiece();
 				CoolLeft = CoolDown;
 				Status = PS_MOVING;
+				if (directionBoard == -10) {
+					directionBoard = 0;
+				} else if (directionBoard == 0) {
+					directionBoard = 10;
+				} else if (directionBoard == 10) {
+					directionBoard = -10;
+				}
+				CurrentPiece->directionP = directionBoard;
 			}
-
-			if (directionBoard == -10) {
-				directionBoard = 0;
-			} else if (directionBoard == 0) {
-				directionBoard = 10;
-			} else if (directionBoard == 10) {
-				directionBoard = -10;
-			}
-			CurrentPiece->direction = directionBoard;
-
 			break;
 		default:
 			break;
@@ -216,8 +214,7 @@ bool ABoard::CheckGameOver() {
 	}
 }
 
-void ABoard::NewPiece() {
-
+void ABoard::NewPiece () {
 	CheckLine();
 	if (CurrentPiece) {
 		CurrentPiece->Dismiss();

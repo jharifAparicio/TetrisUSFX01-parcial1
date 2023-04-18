@@ -323,7 +323,7 @@ bool APiece::MoveDown(bool PlaySound) {
 
 	auto MoveVectorDown = [=] (FVector OldVector) {
 		OldVector.Z -= 10.0f;
-		OldVector.Y -= direction;
+		OldVector.Y += directionP;
 
 		return OldVector;
 	};
@@ -331,7 +331,7 @@ bool APiece::MoveDown(bool PlaySound) {
 	if (!CheckWillCollision (MoveVectorDown)) {
 		FVector NewLocation = GetActorLocation ();
 		NewLocation.Z -= 10;
-		NewLocation.Y -= direction;
+		NewLocation.Y += directionP;
 		SetActorLocation (NewLocation);
 
 		return true;
