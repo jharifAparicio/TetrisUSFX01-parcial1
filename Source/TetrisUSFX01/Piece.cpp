@@ -16,6 +16,8 @@ APiece::APiece() {
 
 	PrimaryActorTick.bCanEverTick = true;
 
+	direction = -10;
+
 	SceneComponent = CreateDefaultSubobject<USceneComponent>("Pieces Scene");
 	RootComponent = SceneComponent;
 
@@ -204,43 +206,43 @@ void APiece::MoveRight() {
 	}
 }
 
-void APiece::MoveLeftRight() {
-	auto MoveVectorLeftRight = [](FVector OldVector) {
-		OldVector.Y += 10.0f;
-		OldVector.Z -= 10.0f;
-		return OldVector;
-	};
-
-	if (!CheckWillCollision(MoveVectorLeftRight)) {
-		FVector NewLocation = GetActorLocation();
-		NewLocation.Y += 10;
-		NewLocation.Z -= 10;
-		SetActorLocation(NewLocation);
-
-		if (MoveLeftRightSoundCue) {
-			UGameplayStatics::PlaySoundAtLocation(GetWorld(), MoveLeftRightSoundCue, GetActorLocation(), GetActorRotation());
-		}
-	}
-}
-
-void APiece::MoveRightLeft() {
-	auto MoveVectorLeftRight = [](FVector OldVector) {
-		OldVector.Y -= 10.0f;
-		OldVector.Z -= 10.0f;
-		return OldVector;
-	};
-
-	if (!CheckWillCollision(MoveVectorLeftRight)) {
-		FVector NewLocation = GetActorLocation();
-		NewLocation.Y -= 10;
-		NewLocation.Z -= 10;
-		SetActorLocation(NewLocation);
-
-		if (MoveLeftRightSoundCue) {
-			UGameplayStatics::PlaySoundAtLocation(GetWorld(), MoveLeftRightSoundCue, GetActorLocation(), GetActorRotation());
-		}
-	}
-}
+//void APiece::MoveLeftRight() {
+//	auto MoveVectorLeftRight = [](FVector OldVector) {
+//		OldVector.Y += 10.0f;
+//		OldVector.Z -= 10.0f;
+//		return OldVector;
+//	};
+//
+//	if (!CheckWillCollision(MoveVectorLeftRight)) {
+//		FVector NewLocation = GetActorLocation();
+//		NewLocation.Y += 10;
+//		NewLocation.Z -= 10;
+//		SetActorLocation(NewLocation);
+//
+//		if (MoveLeftRightSoundCue) {
+//			UGameplayStatics::PlaySoundAtLocation(GetWorld(), MoveLeftRightSoundCue, GetActorLocation(), GetActorRotation());
+//		}
+//	}
+//}
+//
+//void APiece::MoveRightLeft() {
+//	auto MoveVectorLeftRight = [](FVector OldVector) {
+//		OldVector.Y -= 10.0f;
+//		OldVector.Z -= 10.0f;
+//		return OldVector;
+//	};
+//
+//	if (!CheckWillCollision(MoveVectorLeftRight)) {
+//		FVector NewLocation = GetActorLocation();
+//		NewLocation.Y -= 10;
+//		NewLocation.Z -= 10;
+//		SetActorLocation(NewLocation);
+//
+//		if (MoveLeftRightSoundCue) {
+//			UGameplayStatics::PlaySoundAtLocation(GetWorld(), MoveLeftRightSoundCue, GetActorLocation(), GetActorRotation());
+//		}
+//	}
+//}
 
 //void APiece::MoveUp() {
 //	auto MoveVectorLeftRight = [](FVector OldVector) {
@@ -317,20 +319,30 @@ void APiece::MoveRightLeft() {
 }*/
 
 bool APiece::MoveDown(bool PlaySound) {
-	auto MoveVectorDown = [](FVector OldVector) {
+
+
+	auto MoveVectorDown = [=] (FVector OldVector) {
 		OldVector.Z -= 10.0f;
+		OldVector.Y -= direction;
+
 		return OldVector;
 	};
 
-	if (!CheckWillCollision(MoveVectorDown)) {
-		FVector NewLocation = GetActorLocation();
+	if (!CheckWillCollision (MoveVectorDown)) {
+		FVector NewLocation = GetActorLocation ();
 		NewLocation.Z -= 10;
-		SetActorLocation(NewLocation);
+		NewLocation.Y -= direction;
+		SetActorLocation (NewLocation);
 
 		return true;
 	} else {
+		if (direction<10) {
+			direction += 10;
+		} else {
+			direction = -10;
+		}
 		return false;
-	}
+	}	
 }
 
 void APiece::Dismiss() {

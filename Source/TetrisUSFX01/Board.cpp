@@ -91,8 +91,8 @@ void ABoard::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) {
 	PlayerInputComponent->BindAction("MoveLeft", IE_Pressed, this, &ABoard::MoveLeft);
 	PlayerInputComponent->BindAction("MoveRight", IE_Pressed, this, &ABoard::MoveRight);
 
-	PlayerInputComponent->BindAction("MoveLR", IE_Pressed, this, &ABoard::MoveLeftAtRight);
-	PlayerInputComponent->BindAction("MoveRL", IE_Pressed, this, &ABoard::MoveRightAtLeft);
+	/*PlayerInputComponent->BindAction("MoveLR", IE_Pressed, this, &ABoard::MoveLeftAtRight);
+	PlayerInputComponent->BindAction("MoveRL", IE_Pressed, this, &ABoard::MoveRightAtLeft);*/
 
 	//PlayerInputComponent->BindAction("RotateInvert", IE_Pressed, this, &ABoard::RotateInvert);
 	//PlayerInputComponent->BindAction("MoveUp", IE_Pressed, this, &ABoard::MoveAtUp);
@@ -138,23 +138,23 @@ void ABoard::MoveRight() {
 }
 
 
-void ABoard::MoveLeftAtRight() {
-	if (CurrentPiece) {
-		CurrentPiece->MoveLeftRight();
-		if (Status == PS_GOT_BOTTOM) {
-			MoveDownToEnd();
-		}
-	}
-}
-
-void ABoard::MoveRightAtLeft() {
-	if (CurrentPiece) {
-		CurrentPiece->MoveRightLeft();
-		if (Status == PS_GOT_BOTTOM) {
-			MoveDownToEnd();
-		}
-	}
-}
+//void ABoard::MoveLeftAtRight() {
+//	if (CurrentPiece) {
+//		CurrentPiece->MoveLeftRight();
+//		if (Status == PS_GOT_BOTTOM) {
+//			MoveDownToEnd();
+//		}
+//	}
+//}
+//
+//void ABoard::MoveRightAtLeft() {
+//	if (CurrentPiece) {
+//		CurrentPiece->MoveRightLeft();
+//		if (Status == PS_GOT_BOTTOM) {
+//			MoveDownToEnd();
+//		}
+//	}
+//}
 
 void ABoard::MoveDown() {
 	if (CurrentPiece) {
@@ -205,15 +205,17 @@ bool ABoard::CheckGameOver() {
 }
 
 void ABoard::NewPiece() {
+
 	CheckLine();
 	if (CurrentPiece) {
 		CurrentPiece->Dismiss();
 		CurrentPiece->Destroy();
 	}
+	FVector Location (0.0, 5.0, 195.0);
 
-	FVector Location(0.0, 5.0, 195.0);
 	FRotator Rotation(0.0, 0.0, 0.0);
 	CurrentPiece = GetWorld()->SpawnActor<APiece>(Location, Rotation);
+
 	bGameOver = CheckGameOver();
 	if (bGameOver) {
 		UE_LOG(LogTemp, Warning, TEXT("Game Over!!!!!!!!"));

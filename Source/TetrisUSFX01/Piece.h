@@ -41,8 +41,8 @@ public:
 	void MoveLeft();
 	void MoveRight();
 
-	void MoveLeftRight();
-	void MoveRightLeft();
+	//void MoveLeftRight();
+	/*void MoveRightLeft();*/
 	
 	/*void MoveUp();*/
 
@@ -66,6 +66,7 @@ public:
 	//creamos un array para los colores de los bloques
 		TArray<class UMaterial*> Colors;
 
+		float direction;
 private:
 	// creamos un array para los bloques de la pieza creada
 	TArray<ABlock*> Blocks;

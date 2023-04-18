@@ -37,8 +37,8 @@ public:
 	void MoveRight();
 	void MoveDown();
 
-	void MoveLeftAtRight();
-	void MoveRightAtLeft();
+	//void MoveLeftAtRight();
+	//void MoveRightAtLeft();
 
 	//void MoveAtUp();
 	
