@@ -16,7 +16,7 @@ APiece::APiece() {
 
 	PrimaryActorTick.bCanEverTick = true;
 
-	direction = -10;
+	//direction = 0;
 
 	SceneComponent = CreateDefaultSubobject<USceneComponent>("Pieces Scene");
 	RootComponent = SceneComponent;
@@ -336,11 +336,6 @@ bool APiece::MoveDown(bool PlaySound) {
 
 		return true;
 	} else {
-		if (direction<10) {
-			direction += 10;
-		} else {
-			direction = -10;
-		}
 		return false;
 	}	
 }

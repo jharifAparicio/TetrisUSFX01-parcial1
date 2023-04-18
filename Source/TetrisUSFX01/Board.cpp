@@ -31,6 +31,8 @@ ABoard::ABoard() {
 	if (GameOver_Sound.Succeeded()) {
 		GameOverSoundCue = GameOver_Sound.Object;
 	}
+
+	directionBoard = 0;
 }
 
 // Called when the game starts or when spawned
@@ -77,6 +79,16 @@ void ABoard::Tick(float DeltaTime) {
 				CoolLeft = CoolDown;
 				Status = PS_MOVING;
 			}
+
+			if (directionBoard == -10) {
+				directionBoard = 0;
+			} else if (directionBoard == 0) {
+				directionBoard = 10;
+			} else if (directionBoard == 10) {
+				directionBoard = -10;
+			}
+			CurrentPiece->direction = directionBoard;
+
 			break;
 		default:
 			break;
