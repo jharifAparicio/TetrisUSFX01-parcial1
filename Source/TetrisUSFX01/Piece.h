@@ -49,6 +49,8 @@ public:
 	//void MoveUpLeftRight();
 	//void MoveUpRightLeft();
 
+	//void RotateInvert();
+
 	bool MoveDown(bool PlaySound = true);
 
 

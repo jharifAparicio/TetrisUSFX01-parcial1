@@ -94,6 +94,7 @@ void ABoard::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) {
 	PlayerInputComponent->BindAction("MoveLR", IE_Pressed, this, &ABoard::MoveLeftAtRight);
 	PlayerInputComponent->BindAction("MoveRL", IE_Pressed, this, &ABoard::MoveRightAtLeft);
 
+	//PlayerInputComponent->BindAction("RotateInvert", IE_Pressed, this, &ABoard::RotateInvert);
 	//PlayerInputComponent->BindAction("MoveUp", IE_Pressed, this, &ABoard::MoveAtUp);
 
 	//PlayerInputComponent->BindAction("MoveUpLR", IE_Pressed, this, &ABoard::MoveUpLeftRight);
@@ -111,6 +112,12 @@ void ABoard::Rotate() {
 		CurrentPiece->TestRotate();
 	}
 }
+
+//void ABoard::RotateInvert () {
+//	if (CurrentPiece && Status != PS_GOT_BOTTOM) {
+//		CurrentPiece->RotateInvert();
+//	}
+//}
 
 void ABoard::MoveLeft() {
 	if (CurrentPiece) {

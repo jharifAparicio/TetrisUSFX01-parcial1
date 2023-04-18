@@ -297,6 +297,25 @@ void APiece::MoveRightLeft() {
 //	}
 //}
 
+/*void APiece::RotateInvert () {
+	auto RotateVector = [this] (FVector OldVector) {
+		FVector ActorVector = this->GetActorLocation ();
+		FVector BlockVector = OldVector;
+		FVector TempVector = BlockVector - ActorVector;
+		TempVector = ActorVector + TempVector.RotateAngleAxis (90.0, FVector (1.0, 0.0, 0.0));
+		return TempVector;
+	};
+
+	if (!CheckWillCollision (RotateVector)) {
+		UE_LOG (LogTemp, Warning, TEXT ("now can rotate"));
+		FRotator NewRotation = this->GetActorRotation () + FRotator (180.0, 0.0, 0.0);
+		this->SetActorRelativeRotation (NewRotation);
+		if (RotateSoundCue) {
+			UGameplayStatics::PlaySoundAtLocation (GetWorld (), RotateSoundCue, GetActorLocation (), GetActorRotation ());
+		}
+	}
+}*/
+
 bool APiece::MoveDown(bool PlaySound) {
 	auto MoveVectorDown = [](FVector OldVector) {
 		OldVector.Z -= 10.0f;
