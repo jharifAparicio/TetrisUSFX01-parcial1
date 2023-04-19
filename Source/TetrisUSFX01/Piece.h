@@ -41,16 +41,6 @@ public:
 	void MoveLeft();
 	void MoveRight();
 
-	//void MoveLeftRight();
-	/*void MoveRightLeft();*/
-	
-	/*void MoveUp();*/
-
-	//void MoveUpLeftRight();
-	//void MoveUpRightLeft();
-
-	//void RotateInvert();
-
 	bool MoveDown(bool PlaySound = true);
 
 
