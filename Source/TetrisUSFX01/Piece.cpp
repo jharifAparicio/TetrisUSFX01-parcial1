@@ -144,7 +144,7 @@ bool APiece::CheckWillCollision(function<FVector(FVector OldLocation)> ChangeBef
 					   *Result.GetActor()->GetName(),
 					*Result.GetComponent()->GetName());
 			}
-			return true;
+				return true;
 		}
 	}
 	return false;
