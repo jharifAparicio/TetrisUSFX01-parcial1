@@ -49,7 +49,6 @@ public:
 	class USoundCue* GameStartSoundCue;
 
 	//int Score = 0;
-	float directionBoard;
 
 private:
 	enum PieceStatus { PS_NOT_INITED, PS_MOVING, PS_GOT_BOTTOM };

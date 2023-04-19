@@ -16,8 +16,6 @@ APiece::APiece() {
 
 	PrimaryActorTick.bCanEverTick = true;
 
-	//direction = 0;
-
 	SceneComponent = CreateDefaultSubobject<USceneComponent>("Pieces Scene");
 	RootComponent = SceneComponent;
 
@@ -210,17 +208,14 @@ void APiece::MoveRight() {
 bool APiece::MoveDown(bool PlaySound) {
 
 
-	auto MoveVectorDown = [=] (FVector OldVector) {
+	auto MoveVectorDown = [] (FVector OldVector) {
 		OldVector.Z -= 10.0f;
-		OldVector.Y += directionP;
-
 		return OldVector;
 	};
 
 	if (!CheckWillCollision (MoveVectorDown)) {
 		FVector NewLocation = GetActorLocation ();
 		NewLocation.Z -= 10;
-		NewLocation.Y += directionP;
 		SetActorLocation (NewLocation);
 
 		return true;
