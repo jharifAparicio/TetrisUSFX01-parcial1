@@ -147,7 +147,6 @@ bool APiece::CheckWillCollision(function<FVector(FVector OldLocation)> ChangeBef
 			return true;
 		}
 	}
-	
 	return false;
 }
 
