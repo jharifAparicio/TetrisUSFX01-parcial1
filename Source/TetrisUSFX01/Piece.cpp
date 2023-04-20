@@ -67,8 +67,9 @@ APiece::APiece() {
 // Called when the game starts or when spawned
 void APiece::BeginPlay() {
 	Super::BeginPlay();
-
 	SpawnPieces();
+
+
 }
 
 // Called every frame

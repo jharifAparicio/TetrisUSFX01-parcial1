@@ -31,11 +31,14 @@ ABoard::ABoard() {
 	if (GameOver_Sound.Succeeded()) {
 		GameOverSoundCue = GameOver_Sound.Object;
 	}
+	Score = 0.0f;
 }
 
 // Called when the game starts or when spawned
 void ABoard::BeginPlay() {
-	Super::BeginPlay();
+	Super::BeginPlay ();
+
+	ABoard::StartScoreTimer();
 
 	for (TActorIterator<APiece> it(GetWorld()); it; ++it) {
 		if (it->GetFName() == TEXT("DissmissPieces")) {
@@ -45,10 +48,18 @@ void ABoard::BeginPlay() {
 	}
 }
 
+void ABoard::StartScoreTimer () {
+	GetWorldTimerManager ().SetTimer (ScoreTimerHandle, this, &ABoard::UpdateScore, 10.0f, true);
+}
+
+void ABoard::UpdateScore () {
+	FString Texto = FString::Printf (TEXT ("Score-> %d"), Score);
+	GEngine->AddOnScreenDebugMessage (-1, 3.0f, FColor::Yellow, Texto);
+}
+
 // Called every frame
 void ABoard::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
-
 	if (bGameOver) {
 		return;
 	}
@@ -81,6 +92,8 @@ void ABoard::Tick(float DeltaTime) {
 		default:
 			break;
 	}
+
+		
 }
 
 // Called to bind functionality to input
@@ -137,7 +150,7 @@ bool ABoard::CheckGameOver() {
 	);
 
 	if (!CurrentPiece) {
-		UE_LOG(LogTemp, Warning, TEXT("NoPieces"));
+		UE_LOG(LogTemp, Warning, TEXT("inexistent Pieces"));
 		return true;
 	}
 }
@@ -148,6 +161,7 @@ void ABoard::NewPiece () {
 		CurrentPiece->Dismiss();
 		CurrentPiece->Destroy();
 	}
+	Score += 10;
 	FVector Location (0.0, 5.0, 195.0);
 
 	FRotator Rotation(0.0, 0.0, 0.0);
@@ -162,12 +176,7 @@ void ABoard::NewPiece () {
 		{
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), GameOverSoundCue, GetActorLocation(), GetActorRotation());
 		}
-	} /*else {
-		Score += 10;
-
-		GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Yellow, FString::Printf(TEXT("Score %d"), Score));
-
-	}*/
+	} 
 }
 
 void ABoard::CheckLine() {

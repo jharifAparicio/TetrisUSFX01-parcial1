@@ -20,6 +20,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	void StartScoreTimer ();
+	void UpdateScore ();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -31,8 +34,6 @@ public:
 	APiece* CurrentPiece;
 
 	void Rotate(); 
-	//void RotateInvert();
-
 	void MoveLeft(); 
 	void MoveRight();
 	void MoveDown();
@@ -48,7 +49,7 @@ public:
 
 	class USoundCue* GameStartSoundCue;
 
-	//int Score = 0;
+	float Score;
 
 private:
 	enum PieceStatus { PS_NOT_INITED, PS_MOVING, PS_GOT_BOTTOM };
@@ -59,5 +60,7 @@ private:
 	bool bGameOver = false;
 
 	bool CheckGameOver();
+
+	FTimerHandle ScoreTimerHandle;
 
 };
