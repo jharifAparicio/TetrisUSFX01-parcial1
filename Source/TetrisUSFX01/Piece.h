@@ -56,7 +56,7 @@ public:
 	//creamos un array para los colores de los bloques
 		TArray<class UMaterial*> Colors;
 
-	float directionP = 0;
+		float directionP = 0;
 private:
 	// creamos un array para los bloques de la pieza creada
 	TArray<ABlock*> Blocks;
