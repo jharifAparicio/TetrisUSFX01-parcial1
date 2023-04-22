@@ -31,7 +31,7 @@ public:
 	APiece* CurrentPiece;
 
 	void Rotate(); 
-	//void RotateInvert();
+	void RotateFB();
 
 	void MoveLeft(); 
 	void MoveRight();
