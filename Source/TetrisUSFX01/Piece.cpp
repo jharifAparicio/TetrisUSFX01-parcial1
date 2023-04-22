@@ -13,10 +13,7 @@
 APiece::APiece() {
 	//Configura este actor para llamar a la función Tick() en cada cuadro.
 	//Puedes desactivarlo para mejorar el rendimiento si no es necesario.
-
 	PrimaryActorTick.bCanEverTick = true;
-
-	//direction = 0;
 
 	SceneComponent = CreateDefaultSubobject<USceneComponent>("Pieces Scene");
 	RootComponent = SceneComponent;

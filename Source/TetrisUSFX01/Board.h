@@ -48,7 +48,6 @@ public:
 
 	class USoundCue* GameStartSoundCue;
 
-	//int Score = 0;
 	float directionBoard;
 
 private:

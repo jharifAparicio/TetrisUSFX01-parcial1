@@ -167,17 +167,11 @@ void ABoard::NewPiece () {
 	if (bGameOver) {
 		UE_LOG(LogTemp, Warning, TEXT("Game Over!!!!!!!!"));
 		GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Magenta, TEXT("Game Over"));
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("Score en 0")));
 		if (GameOverSoundCue)
 		{
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), GameOverSoundCue, GetActorLocation(), GetActorRotation());
 		}
-	} /*else {
-		Score += 10;
-
-		GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Yellow, FString::Printf(TEXT("Score %d"), Score));
-
-	}*/
+	}
 }
 
 void ABoard::CheckLine() {
