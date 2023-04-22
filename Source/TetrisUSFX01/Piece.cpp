@@ -225,6 +225,13 @@ void APiece::MoveRight() {
 	}
 }
 
+void APiece::MoveDownGraduality () {
+	auto MoveVectorDown = [] (FVector OldVector) {
+		OldVector.Z -= 10.0f;
+		return OldVector;
+	};
+}
+
 bool APiece::MoveDown(bool PlaySound) {
 
 

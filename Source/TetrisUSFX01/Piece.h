@@ -43,6 +43,8 @@ public:
 	void MoveLeft();
 	void MoveRight();
 
+	void MoveDownGraduality();
+
 	bool MoveDown(bool PlaySound = true);
 
 
