@@ -15,11 +15,6 @@ class TETRISUSFX01_API ATetrisUSFX01GameModeBase : public AGameModeBase
 
 public:
 	ATetrisUSFX01GameModeBase ();
-
-private:
-	class ABluePiece *BluePieceBuilder;
-	class AArchitecturalEngineer *Engineer;
-
 protected:
 	virtual void BeginPlay() override;
 

@@ -3,10 +3,6 @@
 
 #include "TetrisUSFX01GameModeBase.h"
 
-#include "BluePiece.h"
-#include "ArchitecturalEngineer.h"
-#include "BPiece.h"
-
 #include "Board.h"
 #include "Camera/CameraActor.h"
 #include "Kismet/GameplayStatics.h"
@@ -34,21 +30,6 @@ void ATetrisUSFX01GameModeBase::BeginPlay()
             break;
         }
     }
-
-    //patron builder
-    // 
-    //Spawn Builder and Engineer
-    BluePieceBuilder = GetWorld ()->SpawnActor<ABluePiece>(ABluePiece::StaticClass ());
-    Engineer = GetWorld ()->SpawnActor<AArchitecturalEngineer>(AArchitecturalEngineer::StaticClass ());
-
-    //Set the Builder for the Engineer and create the buildings
-    Engineer->SetPieceBuilder (BluePieceBuilder);
-    Engineer->ConstructPiece ();
-
-    //Get the Engineer's Lodging and Logs the created buildings
-    ABPiece* Block = Engineer->GetPiece();
-    Block->PieceCharacteristics();
-
 }
 
 // Called every frame
