@@ -13,11 +13,17 @@ class TETRISUSFX01_API ATetrisUSFX01GameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 
+public:
+	ATetrisUSFX01GameModeBase ();
+
+private:
+	class ABluePiece *BluePieceBuilder;
+	class AArchitecturalEngineer *Engineer;
+
 protected:
 	virtual void BeginPlay() override;
 
 public:
-	ATetrisUSFX01GameModeBase();
 
 	UPROPERTY()
 	ABlock* SpawnedActor;
@@ -31,5 +37,4 @@ public:
 	virtual void Tick(float DeltaTime) override;
 private:
 	float siguientePosicionZ;
-
 };

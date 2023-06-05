@@ -13,55 +13,50 @@ using namespace std;
 UCLASS()
 class TETRISUSFX01_API APiece : public AActor {
 
-	GENERATED_BODY()
+	GENERATED_BODY ()
 
 public:
 	// Sets default values for this actor's properties
-	APiece();
+	APiece ();
 
 protected:
 	// inicializamos al metodo begin play -> se ejecuta al iniciar el juego
-	virtual void BeginPlay() override;
+	virtual void BeginPlay () override;
 
 	// inicializamos al metodo end play -> se ejecuta al finalizar el juego
-	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+	virtual void EndPlay (const EEndPlayReason::Type EndPlayReason) override;
 
 public:
 	// inicalizamos el metodo tick -> se ejecuta cada frame del juego
-	virtual void Tick(float DeltaTime) override;
+	virtual void Tick (float DeltaTime) override;
 
 	//creamos la clase SceneComponent -> es un componente que nos permite mover el actor
-	UPROPERTY()
-		class USceneComponent* SceneComponent;
+	UPROPERTY ()
+		class USceneComponent *SceneComponent;
 
 	//creamos los metodos para interactuar con la pieza
-	void DrawDebugPiece();
-	void TestRotate();
+	void DrawDebugPiece ();
+	void TestRotate ();
+	void MoveLeft ();
+	void MoveRight ();
 
-	void TestRotateFB();
+	void MoveDownGraduality ();
 
-	void MoveLeft();
-	void MoveRight();
-
-	void MoveDownGraduality();
-
-	bool MoveDown(bool PlaySound = true);
+	bool MoveDown (bool PlaySound = true);
 
 
-	class USoundCue* RotateSoundCue;
+	class USoundCue *RotateSoundCue;
 
-	class USoundCue* MoveLeftRightSoundCue;
+	class USoundCue *MoveLeftRightSoundCue;
 
-	void Dismiss();
-	bool CheckWillCollision(function<FVector(FVector OldLocation)> ChangeBeforeCheck);
+	void Dismiss ();
+	bool CheckWillCollision (function<FVector (FVector OldLocation)> ChangeBeforeCheck);
 
-	void SpawnPieces();
-	
+	void SpawnPieces ();
+
 	//creamos un array para los colores de los bloques
-		TArray<class UMaterial*> Colors;
-
-	float directionP = 0;
+	TArray<class UMaterial *> Colors;
 private:
 	// creamos un array para los bloques de la pieza creada
-	TArray<ABlock*> Blocks;
+	TArray<ABlock *> Blocks;
 };

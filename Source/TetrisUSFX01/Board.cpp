@@ -31,8 +31,6 @@ ABoard::ABoard() {
 	if (GameOver_Sound.Succeeded()) {
 		GameOverSoundCue = GameOver_Sound.Object;
 	}
-
-	directionBoard = 0;
 }
 
 // Called when the game starts or when spawned
@@ -78,14 +76,6 @@ void ABoard::Tick(float DeltaTime) {
 				NewPiece();
 				CoolLeft = CoolDown;
 				Status = PS_MOVING;
-				if (directionBoard == -10) {
-					directionBoard = 0;
-				} else if (directionBoard == 0) {
-					directionBoard = 10;
-				} else if (directionBoard == 10) {
-					directionBoard = -10;
-				}
-				CurrentPiece->directionP = directionBoard;
 			}
 			break;
 		default:
@@ -97,28 +87,16 @@ void ABoard::Tick(float DeltaTime) {
 void ABoard::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent->BindAction("Rotate", IE_Pressed, this, &ABoard::Rotate);
-
-	PlayerInputComponent->BindAction("RotateFB", IE_Pressed, this, &ABoard::RotateFB);
-	
+	PlayerInputComponent->BindAction("Rotate", IE_Pressed, this, &ABoard::Rotate);	
 	PlayerInputComponent->BindAction("MoveLeft", IE_Pressed, this, &ABoard::MoveLeft);
 	PlayerInputComponent->BindAction("MoveRight", IE_Pressed, this, &ABoard::MoveRight);
 	PlayerInputComponent->BindAction("MoveDown", IE_Pressed, this, &ABoard::MoveDown);
 	PlayerInputComponent->BindAction("MoveDownToEnd", IE_Pressed, this, &ABoard::MoveDownToEnd);
-	//PlayerInputComponent->BindAction("NewPiece", IE_Pressed, this, &ABoard::NewPiece);
-	//PlayerInputComponent->BindAction("CheckLine", IE_Pressed, this, &ABoard::CheckLine);
-
 }
 
 void ABoard::Rotate() {
 	if (CurrentPiece && Status != PS_GOT_BOTTOM) {
 		CurrentPiece->TestRotate();
-	}
-}
-
-void ABoard::RotateFB() {
-	if (CurrentPiece && Status != PS_GOT_BOTTOM) {
-		CurrentPiece->TestRotateFB();
 	}
 }
 

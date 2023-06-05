@@ -31,8 +31,6 @@ public:
 	APiece* CurrentPiece;
 
 	void Rotate(); 
-	void RotateFB();
-
 	void MoveLeft(); 
 	void MoveRight();
 	void MoveDown();
@@ -47,8 +45,6 @@ public:
 	class USoundCue* GameOverSoundCue;
 
 	class USoundCue* GameStartSoundCue;
-
-	float directionBoard;
 
 private:
 	enum PieceStatus { PS_NOT_INITED, PS_MOVING, PS_GOT_BOTTOM };
